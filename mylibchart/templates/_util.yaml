@@ -27,6 +27,9 @@ This takes an array of three values:
 {{- $result := merge $overrides $tpl -}}
 {{- printf "\nresult-object-type: %s\n" (typeOf $result) -}}
 {{- printf "\nresult-object: %s\n" ($result) -}}
-  
+
+{{- $aYaml := $result | toYaml -}}
+{{- printf "\nresult-yaml: %s\n" ($aYaml | fromYaml) -}}
+
 {{- toYaml $result -}}
 {{- end -}}
