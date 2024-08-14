@@ -1,13 +1,32 @@
 ﻿{{- /*
 mylibchart.util.merge will merge two YAML templates and output the result.
 This takes an array of three values:
-- the top context
-- the template name of the overrides (destination)
-- the template name of the base (source)
+- the top context ($configmap)
+- the template name of the overrides (destination - $mychartconfigmap)
+- the template name of the base (source - $mylibchartconfigmaptpl)
 */}}
 {{- define "mylibchart.util.merge" -}}
-{{- $top := first . -}}
-{{- $overrides := fromYaml (include (index . 1) $top) | default (dict ) -}}
-{{- $tpl := fromYaml (include (index . 2) $top) | default (dict ) -}}
-{{- toYaml (merge $overrides $tpl) -}}
+{{- $top := first . -}} 
+{{- $mychartconfigmap := (index . 1)}}
+{{- $mylibchartconfigmaptpl := (index . 2)}}
+
+{{- printf "\ntop: %s\n" ($top | toJson) -}}
+{{- printf "\n$mychartconfigmap: %s\n" ($mychartconfigmap) -}}
+{{- printf "\n$mylibchartconfigmaptpl: %s\n" ($mylibchartconfigmaptpl) -}}
+
+  
+{{- $overrides := fromYaml (include $mychartconfigmap $top) | default (dict ) -}}
+
+{{- printf "\noverrides-object-type: %s\n" (typeOf $overrides) -}}
+{{- printf "\noverrides-object: %s\n" $overrides -}}
+
+{{- $tpl := fromYaml (include $mylibchartconfigmaptpl $top) | default (dict ) -}}
+{{- printf "\ntpl-object-type: %s\n" (typeOf $tpl) -}}
+{{- printf "\ntpl-object: %s\n" ($tpl) -}}
+
+{{- $result := merge $overrides $tpl -}}
+{{- printf "\nresult-object-type: %s\n" (typeOf $result) -}}
+{{- printf "\nresult-object: %s\n" ($result) -}}
+  
+{{- toYaml $result -}}
 {{- end -}}
