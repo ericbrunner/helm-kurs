@@ -1,0 +1,30 @@
+service:
+  name: nginx
+  type: NodePort
+  ports:
+    http:
+      port: 8080
+      targetPort: 80
+      protocol: TCP
+      name: http
+    https:
+      port: 443
+      protocol: TCP
+      name: https
+  selector:
+    app: nginx
+    
+deployment:
+  name: nginx-deployment
+  app: nginx
+  replicas: 3
+  image: nginx:1.14.1
+  port: 80
+  resources:
+    limits:
+      cpu: "1"
+      memory: 512Mi
+    requests:
+      cpu: "0.5"
+      memory:   256Mi
+    
