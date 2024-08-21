@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-    replicas: 1 # This is the number of pods that will be created
+    replicas: 2 # This is the number of pods that will be created
     selector:
       matchLabels:
         app: nginx
@@ -14,4 +14,4 @@ spec:
         spec:
           containers:
             - name: nginx-container
-              image: nginx
+              image: nginx:1.27.0
