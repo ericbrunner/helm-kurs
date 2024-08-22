@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mywordpress-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: mywordpress-ingress-class
+  rules:
+    - http:
+        paths:
+          - path: /wordpress
+            pathType: Prefix
+            backend:
+              service:
+                name: mywordpress-service
+                port:
+                  number: 80

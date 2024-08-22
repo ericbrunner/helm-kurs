@@ -1,0 +1,27 @@
+# The logical resource
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+  namespace: nginx
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/my-pv"
+
+---
+# The physical resource
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+  namespace: nginx
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

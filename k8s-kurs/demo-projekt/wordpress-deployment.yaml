@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mywordpress-deployment
+  namespace: demo-projekt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mywordpress-pod
+  template:
+    metadata:
+      labels:
+        app: mywordpress-pod
+    spec:
+      containers:
+        - name: mywordpress-container
+          image: wordpress:6.6.0
+          
+          envFrom:
+            - configMapRef:
+                name: wordpress-app-config
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-demo-projekt-secret
+                  key: password
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: my-demo-projekt-secret
+                  key: username
+      volumes:
+        - name: mywordpress-volume
+          persistentVolumeClaim:
+            claimName: mywordpress-pvc

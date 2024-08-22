@@ -30,3 +30,8 @@ spec:
                     secretKeyRef:
                       key: password
                       name: my-secret
+          volumes:
+            - name: my-volume
+              persistentVolumeClaim:
+                claimName: my-pvc
+                

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordpress-app-config
+  namespace: demo-projekt
+data:
+  database_url: "mysql://mysql-svc:3306/mydb"
