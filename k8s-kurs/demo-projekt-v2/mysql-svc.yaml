@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc-v2
+  namespace: demo-projekt-v2  # This is the namespace where the service will be created
+spec:
+  selector:
+    app: mysql-pod-v2
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306

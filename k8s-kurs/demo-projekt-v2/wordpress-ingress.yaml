@@ -1,17 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wordpress-ingress
-  namespace: wordpress
+  name: mywordpress-ingress-v2
+  namespace: demo-projekt-v2
 spec:
   rules:
-    - host: wordpress.local 
+    - host: wordpress.local
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: wordpress-service
+                name: mywordpress-service-v2
                 port:
                   number: 80

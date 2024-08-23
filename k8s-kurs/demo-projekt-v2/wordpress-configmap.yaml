@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordpress-app-config-v2
+  namespace: demo-projekt-v2
+data:
+    WPLANG: "de_DE" # see https://developer.wordpress.org/advanced-administration/wordpress/wp-config/#WPLANG
+    WP_DEBUG: "true" # see https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/#WP_DEBUG
