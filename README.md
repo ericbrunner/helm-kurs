@@ -12,6 +12,7 @@ In this repo there are several sample Helm Charts and Kubernetes Manifests relat
 ## Kubernetes Manifests
 - [Kubernetes training](https://www.udemy.com/course/einstieg-in-kubernetes) 
 ### Kubernetes Certificate:
+- [Kubernetes Training Certificate](https://drive.google.com/file/d/1ffNimSPnmq1RYahZBoh3VDxGFxrdUB7O/view?usp=sharing)
 
 
 
